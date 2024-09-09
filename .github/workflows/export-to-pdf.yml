@@ -30,7 +30,7 @@ jobs:
 
       - name: convert .md to pdf with marp
         run: |
-          marp --pdf src/slides/*.md
+          marp --pdf src/slides/*.md --allow-local-files
           mv src/slides/*.pdf outputs/pdf/
 
       - name: Configure Git
