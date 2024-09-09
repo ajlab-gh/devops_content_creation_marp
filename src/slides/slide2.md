@@ -1,0 +1,21 @@
+---
+theme: gaia
+marp: true
+_class: lead
+paginate: true
+backgroundColor: #fff
+backgroundImage: url('../images/background.png')
+---
+
+![bg right:33%](https://c4.wallpaperflare.com/wallpaper/304/870/385/technology-git-github-hd-wallpaper-preview.jpg)
+
+## How to Get Started!
+
+1.  **Fork the Repository**: Begin by [forking this repository](https://github.com/AJLab-GH/tf_diagram_as_code/fork) to your GitHub account.
+  
+2. **Clone the Repository**: Clone your forked repository to your local machine:
+
+     ```bash
+     git clone https://github.com/YOUR_USERNAME/tf_diagram_as_code.git
+     cd tf_diagram_as_code
+     ```

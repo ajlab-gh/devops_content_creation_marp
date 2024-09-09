@@ -1,0 +1,46 @@
+---
+name: Export .md to pdf
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/images/**'
+      - '.github/workflows/export-to-pdf.yml'
+jobs:
+  export-pdf:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Install Dependencies
+        run: |
+          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          sudo dpkg -i google-chrome-stable_current_amd64.deb
+          sudo apt-get install -f
+          google-chrome --version
+          export CHROME_PATH="/usr/bin/google-chrome"
+      - name: convert .md to pdf with marp
+        run: |
+          marp --pdf src/slides/*.md
+          mv src/slides/*.pdf outputs/pdf/
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Commit PDF to the repository
+        run: |
+          git fetch origin main
+          git add outputs/pdf/*.pdf
+          git commit -m "Add/update slides in PDF Format"
+          git push origin main
+        env:
+          GH_TOKEN: ${{ github.token }}

@@ -1,0 +1,22 @@
+---
+theme: gaia
+marp: true
+_class: lead
+paginate: true
+backgroundColor: #fff
+---
+
+![bg right:33%](https://scalefactory.com/blog/2021/03/30/integration-testing-with-terraform-0.15/0_thumbnail.png)
+
+## Deploy your Infrastructure using Terraform!
+
+1.  **Initialize Terraform**:
+
+```markdown
+terraform init
+```
+2.  **Deploy your architecture**
+
+```markdown
+terraform apply
+```
