@@ -39,7 +39,7 @@ jobs:
         run: |
           mkdir -p outputs/images
           for pdf in outputs/pdf/*.pdf; do
-          pdftoppm "$pdf" outputs/images/"$(basename "$pdf" .pdf)" -png
+          pdftoppm "$pdf" outputs/images/"$(basename "$pdf" .pdf)" -png -singlefile
           done
 
       - name: Configure Git
