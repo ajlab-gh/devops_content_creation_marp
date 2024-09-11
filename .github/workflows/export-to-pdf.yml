@@ -27,12 +27,20 @@ jobs:
           google-chrome --version
           export CHROME_PATH="/usr/bin/google-chrome"
           npm install -g @marp-team/marp-cli
+          sudo apt-get install -y poppler-utils # Install pdftoppm for PDF to PNG conversion
 
       - name: convert .md to pdf with marp
         run: |
           marp --pdf src/slides/*.md --allow-local-files
           mkdir -p outputs/pdf
           mv src/slides/*.pdf outputs/pdf/
+
+      - name: Convert PDF to PNG
+        run: |
+          mkdir -p outputs/images
+          for pdf in outputs/pdf/*.pdf; do
+          pdftoppm "$pdf" outputs/images/"$(basename "$pdf" .pdf)" -png
+          done
 
       - name: Configure Git
         run: |
