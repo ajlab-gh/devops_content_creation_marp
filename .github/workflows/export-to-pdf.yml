@@ -51,6 +51,7 @@ jobs:
         run: |
           git fetch origin main
           git add outputs/pdf/*.pdf
+          git add outputs/images/*.png
           git commit -m "Add/update slides in PDF Format"
           git push origin main
         env:
