@@ -7,7 +7,7 @@ on:
     branches:
       - main
     paths:
-      - 'src/images/**'
+      - 'src/slides/**'
       - '.github/workflows/export-to-pdf.yml'
 jobs:
   export-pdf:
