@@ -61,3 +61,17 @@ jobs:
           git push origin main
         env:
           GH_TOKEN: ${{ github.token }}
+
+          # New Job to Trigger Video Creation
+  trigger-video:
+    needs: export-pdf  # Ensures this job runs after the export-pdf job
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger video creation in video_as_code repo
+        run: |
+          curl -X POST \
+          -H "Authorization: token ${{ secrets.REPO_ACCESS_TOKEN }}" \
+          -H "Accept: application/vnd.github.v3+json" \
+          https://api.github.com/repos/ajlab-gh/video_as_code/dispatches \
+          -d '{"event_type":"update-video"}'
